@@ -1,6 +1,7 @@
 package com.example.yttest.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotNull;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -57,5 +58,7 @@ public class Client {
 
     @Column(name = "updated_at")
     private Instant updatedAt;
+
+    private int compagny_id;
 
 }

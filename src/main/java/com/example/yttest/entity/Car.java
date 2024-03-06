@@ -1,7 +1,9 @@
 package com.example.yttest.entity;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.time.Instant;
@@ -9,6 +11,8 @@ import java.time.Instant;
 @Getter
 @Setter
 @Entity
+//@AllArgsConstructor
+//@NoArgsConstructor
 @Table(name = "cars")
 public class Car {
     @Id
@@ -40,6 +44,7 @@ public class Car {
     @Column(name = "enginepower", nullable = false)
     private Integer enginepower;
 
+
     @Column(name = "cylinder", nullable = false)
     private Integer cylinder;
 
@@ -64,10 +69,13 @@ public class Car {
     @Column(name = "carpass", nullable = false)
     private Boolean carpass = false;
 
+    @Column(name = "registercert", nullable = false)
+    private Boolean registerCert=false;
+
     @Column(name = "created_at")
     private Instant createdAt;
 
     @Column(name = "updated_at")
     private Instant updatedAt;
-
+    private int compagny_id;
 }

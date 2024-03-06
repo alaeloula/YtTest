@@ -1,5 +1,6 @@
 package com.example.yttest.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -11,6 +12,7 @@ import java.time.LocalDate;
 @Getter
 @Setter
 @Entity
+@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 @Table(name = "invoices")
 public class Invoice {
     @Id
@@ -53,8 +55,9 @@ public class Invoice {
     @Column(name = "updated_at")
     private Instant updatedAt;
 
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "compagny_id", nullable = false)
-    private Setting compagny;
+//    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+//    @JoinColumn(name = "compagny_id", nullable = false)
+//    private Setting compagny;
+    private int compagny_id;
 
 }

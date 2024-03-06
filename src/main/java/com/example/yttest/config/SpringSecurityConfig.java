@@ -1,18 +1,18 @@
 package com.example.yttest.config;
 
 
-import com.nimbusds.jose.jwk.source.ImmutableSecret;
+//import com.nimbusds.jose.jwk.source.ImmutableSecret;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.config.Customizer;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
-import org.springframework.security.oauth2.jwt.JwtDecoder;
-import org.springframework.security.oauth2.jwt.JwtEncoder;
-import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
-import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
+//import org.springframework.security.oauth2.jose.jws.MacAlgorithm;
+//import org.springframework.security.oauth2.jwt.JwtDecoder;
+//import org.springframework.security.oauth2.jwt.JwtEncoder;
+//import org.springframework.security.oauth2.jwt.NimbusJwtDecoder;
+//import org.springframework.security.oauth2.jwt.NimbusJwtEncoder;
 import org.springframework.security.web.SecurityFilterChain;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 
@@ -22,8 +22,8 @@ import javax.crypto.spec.SecretKeySpec;
 @Configuration
 
 public class SpringSecurityConfig {
-    private String jwtKey = "9h3P6s2lB3z9YcXCx9nrUzD3Qs1AKyGX7YBMc8ElChM=";
-    private static final String[] WHITE_LIST_URL = {"/api/Users/**"};
+    //private String jwtKey = "9h3P6s2lB3z9YcXCx9nrUzD3Qs1AKyGX7YBMc8ElChM=";
+    private static final String[] WHITE_LIST_URL = {"/users/**"};
     private final JWTAuthFilter jwtAuthFilter;
 
     public SpringSecurityConfig(JWTAuthFilter jwtAuthFilter) {
@@ -37,9 +37,7 @@ public class SpringSecurityConfig {
                 .authorizeHttpRequests(auth -> auth
                         .requestMatchers(WHITE_LIST_URL)
                         .permitAll()
-                        .requestMatchers("/api/competitions/save").hasAnyAuthority("ADMIN")
-                        .requestMatchers("/api/huntings/**").hasAnyAuthority("JURY")
-                        .requestMatchers("/api/rankings/save").hasAnyAuthority("JURY" , "ADMIN")
+
                         .anyRequest()
                         .authenticated()
                         )

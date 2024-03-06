@@ -56,7 +56,7 @@ public class JWTService {
 
     public static final long JWT_TOKEN_VALIDITY = 5 * 60 * 60;
 
-    public String extractUsername(String token) {
+    public String extractEmail(String token) {
         return extractClaim(token, Claims::getSubject);
     }
 
@@ -83,7 +83,7 @@ public class JWTService {
     }
 
     public Boolean validateToken(String token, UserDetails userDetails) {
-        final String username = extractUsername(token);
+        final String username = extractEmail(token);
         return (username.equals(userDetails.getUsername()) && !isTokenExpired(token));
     }
 
@@ -97,7 +97,7 @@ public class JWTService {
         return Jwts.builder()
                 .setClaims(claims)
                 .setSubject(userDetails.getUsername())
-                .claim("role", userDetails.getAuthorities())
+                //.claim("role", userDetails.getAuthorities())
                 .setIssuedAt(new Date(System.currentTimeMillis()))
                 .setExpiration(new Date(System.currentTimeMillis()+ JWT_TOKEN_VALIDITY * 1000))
                 .signWith(getSignKey(), SignatureAlgorithm.HS256).compact();
